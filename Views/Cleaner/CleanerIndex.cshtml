@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "CleanerIndex";
+}
+
+<h2>CleanerIndex</h2>
+
+<h1>Welcome @HttpContext.Current.User.Identity.Name</h1>
+
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("Logout", "Cleaner", FormMethod.Post, new { id = "logoutform" }))
+    {
+        <a href="javascript:document.getElementById('logoutform').submit()">Logout</a>
+    }
+}
+

@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using Project_Admin_Prac.Models;
 using System.Web.Security;
+using System.Data.Entity;
+using System.Net;
 
 namespace Project_Admin_Prac.Controllers
 {
@@ -72,6 +74,49 @@ namespace Project_Admin_Prac.Controllers
         {
             FormsAuthentication.SignOut();
             return RedirectToAction("Login","Admin");
+        }
+
+        //Approve Cleaner
+        [Authorize]
+        public ActionResult Approve()
+        {
+            var context = new AdminDataContext();
+            return View(context.Cleaners.ToList());
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var context = new AdminDataContext();
+            var std = context.Cleaners.Where(s => s.Id == id).FirstOrDefault();
+
+            return View(std);
+        }
+        [HttpPost]
+        public ActionResult Edit(Cleaner updcleaner)
+        {
+            //update student in DB using EntityFramework in real-life application
+            var context = new AdminDataContext();
+            Cleaner originalcleaner = context.Cleaners.Where(s => s.Id == updcleaner.Id).FirstOrDefault();
+            originalcleaner.AdminApproved = updcleaner.AdminApproved;
+            originalcleaner.ConfirmPassword = originalcleaner.Password;
+            context.Entry(originalcleaner).State = EntityState.Modified;
+            context.SaveChanges();
+            return RedirectToAction("Approve");
+        }
+
+        public ActionResult Details(int? id)
+        {
+            var context = new AdminDataContext();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Cleaner cleaner = context.Cleaners.Find(id);
+            if (cleaner == null)
+            {
+                return HttpNotFound();
+            }
+            return View(cleaner);
         }
     }
 }

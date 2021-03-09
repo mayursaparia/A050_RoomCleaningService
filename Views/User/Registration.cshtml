@@ -4,7 +4,7 @@
     ViewBag.Title = "Registration";
 }
 
-<h2>Registration</h2>
+<h2> User Registration</h2>
 
 @if (ViewBag.Status != null && Convert.ToBoolean(ViewBag.Status))
 {
@@ -77,14 +77,14 @@ else
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create" class="btn btn-default" />
+                    <input type="submit" value="Submit" class="btn btn-default" />
                 </div>
             </div>
         </div>
         if (ViewBag.Message != null)
         {
-            <div class=" alert alert-danger">
-                <strong>Error</strong>@ViewBag.Message
+            <div class=" alert alert-danger" style="color:red">
+                <strong>Error : @ViewBag.Message</strong>
             </div>
         }
     }
@@ -100,4 +100,5 @@ else
     <script src="~/Scripts/jquery-3.4.1.min.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-    }
+}
+
