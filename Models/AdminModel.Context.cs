@@ -26,10 +26,6 @@ namespace Project_Admin_Prac.Models
         {
             throw new UnintentionalCodeFirstException();
         }
-    
-        public virtual DbSet<AdminTbl> AdminTbls { get; set; }
-        public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<Cleaner> Cleaners { get; set; }
 
         public override int SaveChanges()
         {
@@ -50,5 +46,9 @@ namespace Project_Admin_Prac.Models
                 throw new DbEntityValidationException(exceptionMessage, ex.EntityValidationErrors);
             }
         }
+
+        public virtual DbSet<AdminTbl> AdminTbls { get; set; }
+        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Cleaner> Cleaners { get; set; }
     }
 }

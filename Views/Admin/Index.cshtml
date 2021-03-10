@@ -1,0 +1,24 @@
+﻿@model Project_Admin_Prac.Models.AdminTbl
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>AdminIndex</h2>
+
+<h1>Welcome @HttpContext.Current.User.Identity.Name</h1>
+
+<table>
+    <tr>
+        <td style="padding-right: 10px">@Html.ActionLink("Approve Cleaners", "Approve", "Admin")</td>
+    </tr>
+</table>
+
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("Logout", "Admin", FormMethod.Post, new { id = "logoutform" }))
+    {
+        <a href="javascript:document.getElementById('logoutform').submit()">Logout</a>
+    }
+}
+

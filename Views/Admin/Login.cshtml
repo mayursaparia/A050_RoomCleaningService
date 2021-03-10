@@ -48,11 +48,12 @@
         </div>
     </div>
 }
-
+<h4 style="color:red">@ViewBag.Message</h4>
 <div>
     <table>
         <tr>
-            <td>@Html.ActionLink("User Login", "Login", "User")</td>
+            <td style="padding-right: 10px">@Html.ActionLink("User Login", "Login", "User")</td>
+            <td style="padding-right: 10px">@Html.ActionLink("Cleaner Login", "Login", "Cleaner")</td>
         </tr>
     </table> 
 </div>

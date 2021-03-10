@@ -49,7 +49,7 @@ namespace Project_Admin_Prac.Controllers
                         }
                         else
                         {
-                            return RedirectToAction("AdminIndex", "Home");
+                            return RedirectToAction("Index", "Admin");
                         }
                     }
                     else
@@ -84,6 +84,7 @@ namespace Project_Admin_Prac.Controllers
             return View(context.Cleaners.ToList());
         }
 
+        [Authorize]
         public ActionResult Edit(int id)
         {
             var context = new AdminDataContext();
@@ -104,6 +105,9 @@ namespace Project_Admin_Prac.Controllers
             return RedirectToAction("Approve");
         }
 
+
+        //Displaying  Cleaner Details
+        [Authorize]
         public ActionResult Details(int? id)
         {
             var context = new AdminDataContext();
@@ -117,6 +121,13 @@ namespace Project_Admin_Prac.Controllers
                 return HttpNotFound();
             }
             return View(cleaner);
+        }
+
+        //Landing Page
+        [Authorize]
+        public ActionResult Index()
+        {
+            return View();
         }
     }
 }
