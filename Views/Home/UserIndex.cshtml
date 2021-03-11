@@ -7,6 +7,11 @@
 Welcome @HttpContext.Current.User.Identity.Name
 
 
+<div>
+    @Html.ActionLink("Raise Ticket", "TicketCreate", "User")
+</div>
+
+
 @if (Request.IsAuthenticated)
 {
     using (Html.BeginForm("Logout", "User", FormMethod.Post, new { id = "logoutform" }))

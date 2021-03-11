@@ -10,8 +10,10 @@ using System.Net;
 
 namespace Project_Admin_Prac.Controllers
 {
+   
     public class AdminController : Controller
     {
+        AdminDataContext db = new AdminDataContext();
         // GET: Admin
         //Login GET
         [HttpGet]
@@ -128,6 +130,45 @@ namespace Project_Admin_Prac.Controllers
         public ActionResult Index()
         {
             return View();
+        }
+
+        //Tickets Display
+
+        public ActionResult TicketDisplay()
+        {
+
+            return View(db.Tickets.Where(x => x.Status == false).ToList());
+        }
+
+        //Ticket Reply
+
+        public ActionResult TicketReply(int? id)
+        {
+
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Ticket ticket = db.Tickets.Find(id);
+            if (ticket == null)
+            {
+                return HttpNotFound();
+            }
+            return View(ticket);
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult TicketReply([Bind(Include = "Id,Issue,Description,Date,Resolution,Status,UserEmail")] Ticket ticket)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(ticket).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("TicketDisplay");
+            }
+            return View(ticket);
         }
     }
 }

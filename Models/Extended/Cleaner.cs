@@ -41,7 +41,12 @@ namespace Project_Admin_Prac.Models
         [Required(AllowEmptyStrings = false,ErrorMessage = "Contact NUmber Required")]
         [MinLength(10,ErrorMessage ="Minimum 10 characters")]
         [DataType(DataType.PhoneNumber)]
-        public string ContactNumber { get; set; }
+        public string ContactNumber { get; set; } 
+
+        [Display(Name = "Location")]
+        [RegularExpression("^[a-zA-Z ]*$", ErrorMessage = "only characters allowed")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Location required")]
+        public string Location { get; set; }
 
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "Password required")]

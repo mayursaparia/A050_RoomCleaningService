@@ -161,6 +161,11 @@
     <Compile Include="Models\CleanerLogin.cs" />
     <Compile Include="Models\Extended\Cleaner.cs" />
     <Compile Include="Models\Extended\User.cs" />
+    <Compile Include="Models\Forgotpassword.cs" />
+    <Compile Include="Models\ForgotUserid.cs" />
+    <Compile Include="Models\Ticket.cs">
+      <DependentUpon>AdminModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\User.cs">
       <DependentUpon>AdminModel.tt</DependentUpon>
     </Compile>
@@ -236,6 +241,12 @@
     <Content Include="Views\Admin\Edit.cshtml" />
     <Content Include="Views\Admin\Details.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\User\ForgotUserId.cshtml" />
+    <Content Include="Views\User\ForgotPassword.cshtml" />
+    <Content Include="Views\Admin\TicketDisplay.cshtml" />
+    <Content Include="Views\Admin\TicketReply.cshtml" />
+    <Content Include="Views\User\TicketCreate.cshtml" />
+    <Content Include="Views\User\TicketView.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

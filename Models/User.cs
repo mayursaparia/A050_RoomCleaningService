@@ -20,7 +20,11 @@ namespace Project_Admin_Prac.Models
         public string Email { get; set; }
         public System.DateTime DOB { get; set; }
         public string Password { get; set; }
-        public bool IsEmailVerified { get; set; }
         public System.Guid ActivationCode { get; set; }
+        public string Gender { get; set; }
+        public string ContactNumber { get; set; }
+        public string Ques1 { get; set; }
+        public string Ques2 { get; set; }
+        public string Ques3 { get; set; }
     }
 }

@@ -12,17 +12,14 @@ namespace Project_Admin_Prac.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Cleaner
+    public partial class Ticket
     {
         public int Id { get; set; }
-        public string CleanerId { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Gender { get; set; }
-        public System.DateTime DOB { get; set; }
-        public string Password { get; set; }
-        public bool AdminApproved { get; set; }
-        public string ContactNumber { get; set; }
-        public string Location { get; set; }
+        public string Issue { get; set; }
+        public string Description { get; set; }
+        public Nullable<System.DateTime> Date { get; set; }
+        public string Resolution { get; set; }
+        public bool Status { get; set; }
+        public string UserEmail { get; set; }
     }
 }

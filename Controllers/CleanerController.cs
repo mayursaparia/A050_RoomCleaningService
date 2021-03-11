@@ -35,8 +35,8 @@ namespace Project_Admin_Prac.Controllers
                     return View(cleaner);
                 }
                 //encryption of Passwords
-                cleaner.Password = Crypto.Hash(cleaner.Password);
-                cleaner.ConfirmPassword = Crypto.Hash(cleaner.ConfirmPassword);
+                //cleaner.Password = Crypto.Hash(cleaner.Password);// using crypto
+                //cleaner.ConfirmPassword = Crypto.Hash(cleaner.ConfirmPassword);// using crypto
                 cleaner.AdminApproved = false;
                 using (var context = new AdminDataContext())
                 {
@@ -78,7 +78,8 @@ namespace Project_Admin_Prac.Controllers
                 {
                     if(entity.AdminApproved != false)
                     {
-                        if (string.Compare(Crypto.Hash(cleanerLogin.Password), entity.Password) == 0)
+                        //if (string.Compare(Crypto.Hash(cleanerLogin.Password), entity.Password) == 0) // using crypto
+                        if (string.Compare(cleanerLogin.Password, entity.Password) == 0)
                         {
                             int timeout = cleanerLogin.RememberMe ? 525600 : 120;
                             var ticket = new FormsAuthenticationTicket(cleanerLogin.CleanerID, cleanerLogin.RememberMe, timeout);

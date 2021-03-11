@@ -35,6 +35,15 @@ namespace Project_Admin_Prac.Models
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime DOB { get; set; }
 
+        [Display(Name = "Contact Number")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Contact NUmber Required")]
+        [MinLength(10, ErrorMessage = "Minimum 10 characters")]
+        [DataType(DataType.PhoneNumber)]
+        public string ContactNumber { get; set; }
+
+        [Display(Name = "Gender(Male/Female/Other)")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Gender required")]
+        public string Gender { get; set; }
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "Password required")]
         [DataType(DataType.Password)]
@@ -45,5 +54,17 @@ namespace Project_Admin_Prac.Models
         [DataType(DataType.Password)]
         [Compare("Password", ErrorMessage = "Confirm Password and Password do not match")]
         public string ConfirmPassword { get; set; }
+
+        [Display(Name = "Secret Question 1")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Answer Required")]
+        public string Ques1 { get; set; }
+
+        [Display(Name = "Secret Question 2")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Answer Required")]
+        public string Ques2 { get; set; }
+
+        [Display(Name = "Secret Question 3")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Answer Required")]
+        public string Ques3 { get; set; }
     }
 }
