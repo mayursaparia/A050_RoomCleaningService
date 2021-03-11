@@ -164,7 +164,9 @@ namespace Project_Admin_Prac.Controllers
         {
             if (ModelState.IsValid)
             {
+
                 db.Entry(ticket).State = EntityState.Modified;
+                
                 db.SaveChanges();
                 return RedirectToAction("TicketDisplay");
             }
