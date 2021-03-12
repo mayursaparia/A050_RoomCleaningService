@@ -29,5 +29,6 @@ namespace Project_Admin_Prac.Models
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Cleaner> Cleaners { get; set; }
         public virtual DbSet<Ticket> Tickets { get; set; }
+        public virtual DbSet<Service> Services { get; set; }
     }
 }

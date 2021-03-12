@@ -22,7 +22,7 @@ namespace Project_Admin_Prac.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Registration([Bind(Exclude = "AdminApproved")] Cleaner cleaner)
+        public ActionResult Registration([Bind(Exclude = "AdminApproved,CleanerAssigned")] Cleaner cleaner)
         {
             bool Status = false;
             string Message = "";
@@ -38,6 +38,7 @@ namespace Project_Admin_Prac.Controllers
                 //cleaner.Password = Crypto.Hash(cleaner.Password);// using crypto
                 //cleaner.ConfirmPassword = Crypto.Hash(cleaner.ConfirmPassword);// using crypto
                 cleaner.AdminApproved = false;
+                cleaner.CleanerAssigned = false;
                 using (var context = new AdminDataContext())
                 {
                     context.Cleaners.Add(cleaner);

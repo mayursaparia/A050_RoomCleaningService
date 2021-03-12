@@ -204,6 +204,29 @@ namespace Project_Admin_Prac.Controllers
             return View(forgotpassword);
         }
 
+        //ServiceBooking get
+        [HttpGet]
+        public ActionResult ServiceBooking()
+        {
+            return View();
+        }
+
+        //ServiceBooking Post
+        [HttpPost]
+        public ActionResult ServiceBooking([Bind(Exclude = "Cleaner_Id,Status_Admin,Status_Cleaner,Service_Status")] Service serviceobj)
+        {
+            using (var context = new AdminDataContext())
+            {
+                serviceobj.Service_Status = "";
+                serviceobj.Status_Admin = false;
+                serviceobj.Status_Cleaner = false;
+                context.Services.Add(serviceobj);
+                context.SaveChanges();
+            }
+
+            return View(serviceobj);
+        }
+
         //Logout
         [Authorize]
         [HttpPost]

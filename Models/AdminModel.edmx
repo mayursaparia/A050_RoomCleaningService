@@ -27,6 +27,23 @@
           <Property Name="AdminApproved" Type="bit" Nullable="false" />
           <Property Name="ContactNumber" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Location" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CleanerAssigned" Type="bit" />
+        </EntityType>
+        <EntityType Name="Service">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="OrderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoomCount" Type="int" Nullable="false" />
+          <Property Name="Address" Type="varchar(max)" Nullable="false" />
+          <Property Name="Location" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="TimeSlot" Type="int" Nullable="false" />
+          <Property Name="ContactNumber" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="Status_Admin" Type="bit" />
+          <Property Name="Status_Cleaner" Type="bit" />
+          <Property Name="Service_Status" Type="varchar" MaxLength="50" />
+          <Property Name="Cleaner_Id" Type="int" />
         </EntityType>
         <EntityType Name="Ticket">
           <Key>
@@ -60,6 +77,7 @@
         <EntityContainer Name="ModelStoreContainer">
           <EntitySet Name="AdminTbl" EntityType="Self.AdminTbl" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cleaner" EntityType="Self.Cleaner" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Service" EntityType="Self.Service" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ticket" EntityType="Self.Ticket" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
@@ -80,6 +98,7 @@
           <EntitySet Name="Users" EntityType="Model.User" />
           <EntitySet Name="Cleaners" EntityType="Model.Cleaner" />
           <EntitySet Name="Tickets" EntityType="Model.Ticket" />
+          <EntitySet Name="Services" EntityType="Model.Service" />
         </EntityContainer>
         <EntityType Name="User">
           <Key>
@@ -112,6 +131,7 @@
           <Property Name="AdminApproved" Type="Boolean" Nullable="false" />
           <Property Name="ContactNumber" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CleanerAssigned" Type="Boolean" />
         </EntityType>
         <EntityType Name="Ticket">
           <Key>
@@ -124,6 +144,22 @@
           <Property Name="Resolution" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Status" Type="Boolean" Nullable="false" />
           <Property Name="UserEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Service">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="OrderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoomCount" Type="Int32" Nullable="false" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Location" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="TimeSlot" Type="Int32" Nullable="false" />
+          <Property Name="ContactNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Status_Admin" Type="Boolean" />
+          <Property Name="Status_Cleaner" Type="Boolean" />
+          <Property Name="Service_Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Cleaner_Id" Type="Int32" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -161,6 +197,7 @@
           <EntitySetMapping Name="Cleaners">
             <EntityTypeMapping TypeName="Model.Cleaner">
               <MappingFragment StoreEntitySet="Cleaner">
+                <ScalarProperty Name="CleanerAssigned" ColumnName="CleanerAssigned" />
                 <ScalarProperty Name="Location" ColumnName="Location" />
                 <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
                 <ScalarProperty Name="AdminApproved" ColumnName="AdminApproved" />
@@ -184,6 +221,23 @@
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Issue" ColumnName="Issue" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Services">
+            <EntityTypeMapping TypeName="Model.Service">
+              <MappingFragment StoreEntitySet="Service">
+                <ScalarProperty Name="Cleaner_Id" ColumnName="Cleaner_Id" />
+                <ScalarProperty Name="Service_Status" ColumnName="Service_Status" />
+                <ScalarProperty Name="Status_Cleaner" ColumnName="Status_Cleaner" />
+                <ScalarProperty Name="Status_Admin" ColumnName="Status_Admin" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+                <ScalarProperty Name="TimeSlot" ColumnName="TimeSlot" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="RoomCount" ColumnName="RoomCount" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

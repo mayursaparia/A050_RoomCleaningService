@@ -12,18 +12,18 @@ namespace Project_Admin_Prac.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Cleaner
+    public partial class Service
     {
-        public int Id { get; set; }
-        public string CleanerId { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Gender { get; set; }
-        public System.DateTime DOB { get; set; }
-        public string Password { get; set; }
-        public bool AdminApproved { get; set; }
-        public string ContactNumber { get; set; }
+        public int OrderId { get; set; }
+        public int RoomCount { get; set; }
+        public string Address { get; set; }
         public string Location { get; set; }
-        public Nullable<bool> CleanerAssigned { get; set; }
+        public int TimeSlot { get; set; }
+        public string ContactNumber { get; set; }
+        public System.DateTime Date { get; set; }
+        public Nullable<bool> Status_Admin { get; set; }
+        public Nullable<bool> Status_Cleaner { get; set; }
+        public string Service_Status { get; set; }
+        public Nullable<int> Cleaner_Id { get; set; }
     }
 }

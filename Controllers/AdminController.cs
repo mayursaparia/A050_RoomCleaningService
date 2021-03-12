@@ -7,6 +7,7 @@ using Project_Admin_Prac.Models;
 using System.Web.Security;
 using System.Data.Entity;
 using System.Net;
+using System.Dynamic;
 
 namespace Project_Admin_Prac.Controllers
 {
@@ -164,13 +165,47 @@ namespace Project_Admin_Prac.Controllers
         {
             if (ModelState.IsValid)
             {
-
                 db.Entry(ticket).State = EntityState.Modified;
-                
                 db.SaveChanges();
                 return RedirectToAction("TicketDisplay");
             }
             return View(ticket);
+        }
+
+        //Cleaner List
+
+        private List<Cleaner> GetCleaners()
+        {
+            var context = new AdminDataContext();
+            List<Cleaner> CleanerList = context.Cleaners.ToList();
+            return CleanerList;
+        }
+        //Cleaner List
+
+        private List<Service> GetServices()
+        {
+            var context = new AdminDataContext();
+            List<Service> ServiceList = context.Services.ToList();
+            return ServiceList;
+         }
+
+        //Filter Cleaner and Service
+        public ActionResult Filter(string location)
+        {
+            var context = new AdminDataContext();
+            ViewBag.Locationservice = (from r in context.Services
+                                select r.Location).Distinct();
+            ViewBag.Locationcleaner = (from r in context.Cleaners
+                                       select r.Location).Distinct();
+            dynamic mymodel = new ExpandoObject();
+            mymodel.Cleanerz = from r in context.Cleaners
+                               where r.Location == location || location == null || location == ""
+                               select r;
+            //GetCleaners();
+            mymodel.Services = from r in context.Services
+                               where r.Location == location || location == null || location == ""
+                               select r;
+            return View(mymodel);
         }
     }
 }

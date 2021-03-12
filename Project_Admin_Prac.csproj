@@ -160,9 +160,13 @@
     </Compile>
     <Compile Include="Models\CleanerLogin.cs" />
     <Compile Include="Models\Extended\Cleaner.cs" />
+    <Compile Include="Models\Extended\Service.cs" />
     <Compile Include="Models\Extended\User.cs" />
     <Compile Include="Models\Forgotpassword.cs" />
     <Compile Include="Models\ForgotUserid.cs" />
+    <Compile Include="Models\Service.cs">
+      <DependentUpon>AdminModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Ticket.cs">
       <DependentUpon>AdminModel.tt</DependentUpon>
     </Compile>
@@ -247,8 +251,12 @@
     <Content Include="Views\Admin\TicketReply.cshtml" />
     <Content Include="Views\User\TicketCreate.cshtml" />
     <Content Include="Views\User\TicketView.cshtml" />
+    <Content Include="Views\User\ServiceBooking.cshtml" />
+    <Content Include="Views\Admin\Filter.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\Service\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
