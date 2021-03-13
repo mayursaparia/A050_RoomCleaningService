@@ -13,8 +13,8 @@ namespace Project_Admin_Prac.Controllers
     {
 
         //Logins
-        //neilanu1702@gmail.com : neilanu
-        //mayur.saparia15@gmail.com :saparia
+        //neilanu1702@gmail.com : anubhav
+        //mayur.saparia15@gmail.com :mayur123
         //jasm@gmail.com : jasmine
         // GET: User
         // Registration Action
@@ -101,7 +101,7 @@ namespace Project_Admin_Prac.Controllers
                         else
                         {
                             Session["UID"] = login.EmailID;
-                            return RedirectToAction("UserIndex", "Home");
+                            return RedirectToAction("UserIndex","User");
                         }
                     }
                     else
@@ -120,6 +120,13 @@ namespace Project_Admin_Prac.Controllers
             return View();
         }
 
+
+        //User Landing Page
+        [Authorize]
+        public ActionResult UserIndex()
+        {
+            return View();
+        }
         //Forgot UserID
         [HttpGet]
         public ActionResult ForgotUserId()
@@ -220,11 +227,12 @@ namespace Project_Admin_Prac.Controllers
                 serviceobj.Service_Status = "";
                 serviceobj.Status_Admin = false;
                 serviceobj.Status_Cleaner = false;
+                serviceobj.Payment = false;
                 context.Services.Add(serviceobj);
                 context.SaveChanges();
             }
 
-            return View(serviceobj);
+            return RedirectToAction("ServiceDisplayUser");
         }
 
         //Logout
@@ -273,9 +281,29 @@ namespace Project_Admin_Prac.Controllers
 
         public ActionResult TicketView()
         {
+           
             AdminDataContext db = new AdminDataContext();
             string uid = Convert.ToString(Session["UID"]);
             return View(db.Tickets.Where(x => x.UserEmail == uid).ToList());
+        }
+
+        //Service Booking user
+        [Authorize]
+        public ActionResult ServiceDisplayUser()
+        {
+            bool Status = false;
+            string currentUser = User.Identity.Name;
+            var context = new AdminDataContext();
+            var UserObj = context.Users.Where(x => x.Email == currentUser).FirstOrDefault();
+            if (context.Services.Where(x => x.UserEmail == currentUser).FirstOrDefault() != null)
+            {
+                ViewBag.Status = true;
+                var serviceList = context.Services.Where(x => x.UserEmail == currentUser).ToList();
+                return View(serviceList);
+            }
+            ViewBag.Status = Status;
+            ViewBag.Message = "First Add a Service";
+            return View();
         }
 
         [NonAction]

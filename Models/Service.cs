@@ -24,6 +24,8 @@ namespace Project_Admin_Prac.Models
         public Nullable<bool> Status_Admin { get; set; }
         public Nullable<bool> Status_Cleaner { get; set; }
         public string Service_Status { get; set; }
-        public Nullable<int> Cleaner_Id { get; set; }
+        public string Cleaner_Id { get; set; }
+        public Nullable<bool> Payment { get; set; }
+        public string UserEmail { get; set; }
     }
 }

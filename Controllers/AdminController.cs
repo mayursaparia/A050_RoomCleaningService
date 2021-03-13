@@ -95,6 +95,7 @@ namespace Project_Admin_Prac.Controllers
 
             return View(std);
         }
+        //Editing Admin Approval
         [HttpPost]
         public ActionResult Edit(Cleaner updcleaner)
         {
@@ -180,16 +181,15 @@ namespace Project_Admin_Prac.Controllers
             List<Cleaner> CleanerList = context.Cleaners.ToList();
             return CleanerList;
         }
-        //Cleaner List
-
+        //Service List
         private List<Service> GetServices()
         {
             var context = new AdminDataContext();
             List<Service> ServiceList = context.Services.ToList();
             return ServiceList;
          }
-
         //Filter Cleaner and Service
+        [Authorize]
         public ActionResult Filter(string location)
         {
             var context = new AdminDataContext();
@@ -205,7 +205,46 @@ namespace Project_Admin_Prac.Controllers
             mymodel.Services = from r in context.Services
                                where r.Location == location || location == null || location == ""
                                select r;
-            return View(mymodel);
+            return View(mymodel); 
+        }
+        //Edit for Service Booking
+        public ActionResult EditServiceBooking(int Orderid)
+        {
+            var context = new AdminDataContext();
+            var selectedservice = context.Services.Where(s => s.OrderId == Orderid).FirstOrDefault();
+            return View(selectedservice);
+        }
+        //Edit for Service Booking POST
+        [HttpPost]
+        public ActionResult EditServiceBooking(Service serv)
+        {
+            var context = new AdminDataContext();
+            Service originalservice = context.Services.Where(s => s.OrderId == serv.OrderId).FirstOrDefault();
+            originalservice.Status_Admin = serv.Status_Admin;
+            originalservice.Cleaner_Id = serv.Cleaner_Id;
+            originalservice.Service_Status = serv.Service_Status;
+            context.SaveChanges();
+            return RedirectToAction("Filter","Admin");
+        }
+
+        //Edit for Cleaner Booking
+        public ActionResult EditCleanerlist(int id)
+        {
+            var context = new AdminDataContext();
+            var selectedcleaner = context.Cleaners.Where(s => s.Id == id).FirstOrDefault();
+            return View(selectedcleaner);
+        }
+
+        //Edit for Cleaner Booking POST
+        [HttpPost]
+        public ActionResult EditCleanerlist(Cleaner cler)
+        {
+            var context = new AdminDataContext();
+            Cleaner originalcleaner = context.Cleaners.Where(s => s.CleanerId == cler.CleanerId).FirstOrDefault();
+            originalcleaner.CleanerAssigned = cler.CleanerAssigned;
+            originalcleaner.ConfirmPassword = originalcleaner.Password;
+            context.SaveChanges();
+            return RedirectToAction("Filter");
         }
     }
 }

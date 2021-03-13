@@ -137,6 +137,45 @@ namespace Project_Admin_Prac.Controllers
             return View();
         }
 
+        //ServiceBooking for Cleaner
+        [Authorize]
+        public ActionResult ServiceBookingCleaner()
+        {
+            bool Status = false ;
+            string currentCleaner = User.Identity.Name;
+            var context = new AdminDataContext();
+            var cleanerObj = context.Cleaners.Where(x => x.CleanerId == currentCleaner).FirstOrDefault();
+            string currentCleanerId = cleanerObj.CleanerId;
+            if(context.Services.Where(x => x.Cleaner_Id == currentCleanerId).FirstOrDefault() != null)
+            {
+                ViewBag.Status = true;
+                var serviceList = context.Services.Where(x => x.Cleaner_Id == currentCleanerId).ToList();
+                return View(serviceList);
+            }
+            ViewBag.Status = Status;
+            ViewBag.Message = "No jobs For U Currently";
+            return View();
+        }
+
+        //Edit for Services
+        [Authorize]
+        public ActionResult EditServiceBookingCleaner(int id)
+        {
+            var context = new AdminDataContext();
+            var selectedservice = context.Services.Where(s => s.OrderId == id).FirstOrDefault();
+            return View(selectedservice);
+        }
+        //Edit for Services POST
+        [HttpPost]
+        public ActionResult EditServiceBookingCleaner(Service serv)
+        {
+            var context = new AdminDataContext();
+            Service originalservice = context.Services.Where(s => s.OrderId == serv.OrderId).FirstOrDefault();
+            originalservice.Status_Cleaner = serv.Status_Cleaner;
+            originalservice.Service_Status = serv.Service_Status;
+            context.SaveChanges();
+            return RedirectToAction("ServiceBookingCleaner", "Cleaner");
+        }
 
         //CHECK FOR DUPlicates
         [NonAction]

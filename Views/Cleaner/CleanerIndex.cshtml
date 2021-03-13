@@ -7,6 +7,17 @@
 
 <h1>Welcome @HttpContext.Current.User.Identity.Name</h1>
 
+<table class="form-group-sm">
+    <tr>
+        <td style="padding-right: 10px">@Html.ActionLink("Cleaning Jobs", "ServiceBookingCleaner", "Cleaner")</td>
+    </tr>
+</table>
+
+@if(ViewBag.Message != null)
+{
+    <h2>NO JOBS FOR U NOW</h2>
+}
+
 @if (Request.IsAuthenticated)
 {
     using (Html.BeginForm("Logout", "Cleaner", FormMethod.Post, new { id = "logoutform" }))

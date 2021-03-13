@@ -17,6 +17,11 @@ namespace Project_Admin_Prac.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "Room Count Required")]
         public int RoomCount { get; set; }
 
+        [Display(Name = "Email ID")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Email ID required")]
+        [EmailAddress(ErrorMessage = "Invalid Email Address")]
+        public string UserEmail { get; set; }
+
         [Required(AllowEmptyStrings = false, ErrorMessage = "Address Required")]
         public string Address { get; set; }
 
@@ -28,7 +33,7 @@ namespace Project_Admin_Prac.Models
         public int TimeSlot { get; set; }
 
         [Display(Name = "Contact Number")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Contact NUmber Required")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Contact Number Required")]
         [MinLength(10, ErrorMessage = "Minimum 10 characters")]
         [DataType(DataType.PhoneNumber)]
         public string ContactNumber { get; set; }

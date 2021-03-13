@@ -1,0 +1,110 @@
+﻿@model IEnumerable<Project_Admin_Prac.Models.Service>
+
+@{
+    ViewBag.Title = "ServiceDisplayUser";
+}
+
+<h2>ServiceDisplayUser</h2>
+
+<p>
+    @Html.ActionLink("Create New", "ServiceBooking")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RoomCount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Location)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TimeSlot)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ContactNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status_Admin)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status_Cleaner)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Service_Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cleaner_Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Payment)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserEmail)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RoomCount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Location)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TimeSlot)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ContactNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status_Admin)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status_Cleaner)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Service_Status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cleaner_Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Payment)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserEmail)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+        </td>
+    </tr>
+}
+
+</table>
+<div class="form-group">
+    <table>
+        <tr>
+            <td style="padding-right: 10px">@Html.ActionLink("Back", "UserIndex", "User")</td>
+        </tr>
+    </table>
+</div>

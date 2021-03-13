@@ -253,6 +253,12 @@
     <Content Include="Views\User\TicketView.cshtml" />
     <Content Include="Views\User\ServiceBooking.cshtml" />
     <Content Include="Views\Admin\Filter.cshtml" />
+    <Content Include="Views\Admin\EditServiceBooking.cshtml" />
+    <Content Include="Views\Admin\EditCleanerlist.cshtml" />
+    <Content Include="Views\Cleaner\ServiceBookingCleaner.cshtml" />
+    <Content Include="Views\Cleaner\EditServiceBookingCleaner.cshtml" />
+    <Content Include="Views\User\UserIndex.cshtml" />
+    <Content Include="Views\User\ServiceDisplayUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Service\" />

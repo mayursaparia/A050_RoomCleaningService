@@ -34,6 +34,7 @@
             <PropertyRef Name="OrderId" />
           </Key>
           <Property Name="OrderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserEmail" Type="varchar" MaxLength="254" />
           <Property Name="RoomCount" Type="int" Nullable="false" />
           <Property Name="Address" Type="varchar(max)" Nullable="false" />
           <Property Name="Location" Type="varchar" MaxLength="20" Nullable="false" />
@@ -43,7 +44,8 @@
           <Property Name="Status_Admin" Type="bit" />
           <Property Name="Status_Cleaner" Type="bit" />
           <Property Name="Service_Status" Type="varchar" MaxLength="50" />
-          <Property Name="Cleaner_Id" Type="int" />
+          <Property Name="Cleaner_Id" Type="varchar(max)" />
+          <Property Name="Payment" Type="bit" />
         </EntityType>
         <EntityType Name="Ticket">
           <Key>
@@ -159,7 +161,9 @@
           <Property Name="Status_Admin" Type="Boolean" />
           <Property Name="Status_Cleaner" Type="Boolean" />
           <Property Name="Service_Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Cleaner_Id" Type="Int32" />
+          <Property Name="Cleaner_Id" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Payment" Type="Boolean" />
+          <Property Name="UserEmail" Type="String" MaxLength="254" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -227,6 +231,8 @@
           <EntitySetMapping Name="Services">
             <EntityTypeMapping TypeName="Model.Service">
               <MappingFragment StoreEntitySet="Service">
+                <ScalarProperty Name="UserEmail" ColumnName="UserEmail" />
+                <ScalarProperty Name="Payment" ColumnName="Payment" />
                 <ScalarProperty Name="Cleaner_Id" ColumnName="Cleaner_Id" />
                 <ScalarProperty Name="Service_Status" ColumnName="Service_Status" />
                 <ScalarProperty Name="Status_Cleaner" ColumnName="Status_Cleaner" />

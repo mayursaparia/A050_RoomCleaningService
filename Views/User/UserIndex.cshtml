@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "UserIndex";
+}
+
+<h2>UserIndex</h2>
+
+Welcome @HttpContext.Current.User.Identity.Name
+
+
+<table class="form-group-sm">
+    <tr>
+        <td style="padding-right: 10px">@Html.ActionLink("Raise Ticket", "TicketCreate", "User")</td>
+    </tr>
+    <tr>
+        <td style="padding-right: 10px">@Html.ActionLink("Book a Service", "ServiceBooking", "User")</td>
+    </tr>
+    <tr>
+        <td style="padding-right: 10px">@Html.ActionLink("View Status of Service", "ServiceDisplayUser", "User")</td>
+    </tr>
+</table>
+
+
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("Logout", "User", FormMethod.Post, new { id = "logoutform" }))
+    {
+        <a href="javascript:document.getElementById('logoutform').submit()">Logout</a>
+    }
+
+}
