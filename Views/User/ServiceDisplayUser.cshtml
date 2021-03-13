@@ -95,7 +95,7 @@
             @Html.DisplayFor(modelItem => item.UserEmail)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Make Payment", "Payment", new { id=item.OrderId }) 
         </td>
     </tr>
 }

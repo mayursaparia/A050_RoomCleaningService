@@ -146,7 +146,7 @@ namespace Project_Admin_Prac.Controllers
             var context = new AdminDataContext();
             var cleanerObj = context.Cleaners.Where(x => x.CleanerId == currentCleaner).FirstOrDefault();
             string currentCleanerId = cleanerObj.CleanerId;
-            if(context.Services.Where(x => x.Cleaner_Id == currentCleanerId).FirstOrDefault() != null)
+            if(context.Services.Where(x => x.Cleaner_Id == currentCleanerId && x.Payment==true).FirstOrDefault() != null)
             {
                 ViewBag.Status = true;
                 var serviceList = context.Services.Where(x => x.Cleaner_Id == currentCleanerId).ToList();

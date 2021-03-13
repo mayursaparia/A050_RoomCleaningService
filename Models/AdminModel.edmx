@@ -29,6 +29,19 @@
           <Property Name="Location" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="CleanerAssigned" Type="bit" />
         </EntityType>
+        <EntityType Name="Payment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cardNumber" Type="varchar" MaxLength="50" />
+          <Property Name="ExpMonth" Type="int" />
+          <Property Name="ExpYear" Type="int" />
+          <Property Name="cvv" Type="int" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="amount" Type="float" />
+          <Property Name="Method" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="Service">
           <Key>
             <PropertyRef Name="OrderId" />
@@ -79,6 +92,7 @@
         <EntityContainer Name="ModelStoreContainer">
           <EntitySet Name="AdminTbl" EntityType="Self.AdminTbl" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cleaner" EntityType="Self.Cleaner" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Payment" EntityType="Self.Payment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Service" EntityType="Self.Service" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ticket" EntityType="Self.Ticket" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
@@ -101,6 +115,7 @@
           <EntitySet Name="Cleaners" EntityType="Model.Cleaner" />
           <EntitySet Name="Tickets" EntityType="Model.Ticket" />
           <EntitySet Name="Services" EntityType="Model.Service" />
+          <EntitySet Name="Payments" EntityType="Model.Payment" />
         </EntityContainer>
         <EntityType Name="User">
           <Key>
@@ -164,6 +179,19 @@
           <Property Name="Cleaner_Id" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Payment" Type="Boolean" />
           <Property Name="UserEmail" Type="String" MaxLength="254" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Payment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cardNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ExpMonth" Type="Int32" />
+          <Property Name="ExpYear" Type="Int32" />
+          <Property Name="cvv" Type="Int32" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="amount" Type="Double" />
+          <Property Name="Method" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -244,6 +272,20 @@
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="RoomCount" ColumnName="RoomCount" />
                 <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Payments">
+            <EntityTypeMapping TypeName="Model.Payment">
+              <MappingFragment StoreEntitySet="Payment">
+                <ScalarProperty Name="Method" ColumnName="Method" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="cvv" ColumnName="cvv" />
+                <ScalarProperty Name="ExpYear" ColumnName="ExpYear" />
+                <ScalarProperty Name="ExpMonth" ColumnName="ExpMonth" />
+                <ScalarProperty Name="cardNumber" ColumnName="cardNumber" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

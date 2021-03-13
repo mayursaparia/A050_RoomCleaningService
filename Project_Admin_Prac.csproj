@@ -160,10 +160,14 @@
     </Compile>
     <Compile Include="Models\CleanerLogin.cs" />
     <Compile Include="Models\Extended\Cleaner.cs" />
+    <Compile Include="Models\Extended\Payment.cs" />
     <Compile Include="Models\Extended\Service.cs" />
     <Compile Include="Models\Extended\User.cs" />
     <Compile Include="Models\Forgotpassword.cs" />
     <Compile Include="Models\ForgotUserid.cs" />
+    <Compile Include="Models\Payment.cs">
+      <DependentUpon>AdminModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Service.cs">
       <DependentUpon>AdminModel.tt</DependentUpon>
     </Compile>
@@ -259,6 +263,7 @@
     <Content Include="Views\Cleaner\EditServiceBookingCleaner.cshtml" />
     <Content Include="Views\User\UserIndex.cshtml" />
     <Content Include="Views\User\ServiceDisplayUser.cshtml" />
+    <Content Include="Views\User\CardPayment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Service\" />

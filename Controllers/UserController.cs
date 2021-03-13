@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -305,6 +306,60 @@ namespace Project_Admin_Prac.Controllers
             ViewBag.Message = "First Add a Service";
             return View();
         }
+
+
+        //Payment
+        public ActionResult Payment(int? id)
+        {
+
+            AdminDataContext db = new AdminDataContext();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Service service = db.Services.Find(id);
+            Session["Amount"] = (service.RoomCount * 500);
+            service.Payment = true;
+            if (ModelState.IsValid)
+            {
+                db.Entry(service).State = EntityState.Modified;
+                db.SaveChanges();
+               
+            }
+            if (service == null)
+            {
+                return HttpNotFound();
+            }
+            return RedirectToAction("CardPayment");
+
+        }
+
+        public ActionResult CardPayment()
+        {
+            ViewBag.Amount = Session["Amount"];
+            return View();
+            
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CardPayment([Bind(Include = "Id,cardNumber,ExpMonth,ExpYear,cvv,name,amount,Method")] Payment payment)
+        {
+            if (ModelState.IsValid)
+            {
+                AdminDataContext db = new AdminDataContext();
+                
+                payment.amount = Convert.ToDouble(Session["Amount"]);
+                payment.Method = "Card";
+                db.Payments.Add(payment);
+                db.SaveChanges();
+                return RedirectToAction("ServiceDisplayUser");
+            }
+
+            return View(payment);
+        }
+
+
 
         [NonAction]
         public bool IsEmailExist(string email)
