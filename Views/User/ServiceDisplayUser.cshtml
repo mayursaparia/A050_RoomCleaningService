@@ -51,53 +51,59 @@
             @Html.DisplayNameFor(model => model.UserEmail)
         </th>
         <th></th>
+        <th></th>
+
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.OrderId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RoomCount)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Address)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Location)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TimeSlot)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ContactNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Status_Admin)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Status_Cleaner)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Service_Status)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Cleaner_Id)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Payment)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserEmail)
-        </td>
-        <td>
-            @Html.ActionLink("Make Payment", "Payment", new { id=item.OrderId }) 
-        </td>
-    </tr>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.OrderId)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.RoomCount)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Address)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Location)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.TimeSlot)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ContactNumber)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Date)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Status_Admin)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Status_Cleaner)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Service_Status)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Cleaner_Id)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Payment)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.UserEmail)
+    </td>
+    <td>
+        @Html.ActionLink("Make Payment", "Payment", new { id = item.OrderId })
+    </td>
+    <td>
+        @Html.ActionLink("Give Feedback", "Feedback", new { id = item.OrderId })
+    </td>
+
+</tr>
 }
 
 </table>

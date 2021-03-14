@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Project_Admin_Prac.Models.Feedback>
+
+@{
+    ViewBag.Title = "FeedbackView";
+}
+
+<h2>FeedbackView</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.RatingDusting)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RatingVacuuming)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OverallImpression)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AdditionalInformation)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.RatingDusting)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RatingVacuuming)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OverallImpression)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AdditionalInformation)
+        </td>
+
+    </tr>
+}
+
+</table>
+<div>
+    @Html.ActionLink("Back", "CreateFeedback", "User")
+
+
+</div>

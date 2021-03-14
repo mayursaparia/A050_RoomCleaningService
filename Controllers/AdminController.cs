@@ -246,5 +246,11 @@ namespace Project_Admin_Prac.Controllers
             context.SaveChanges();
             return RedirectToAction("Filter");
         }
+
+        //View User Feedback for services 
+        public ActionResult FeedbackDisplay()
+        {
+            return View(db.Feedbacks.ToList());
+        }
     }
 }

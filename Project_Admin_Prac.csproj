@@ -160,9 +160,13 @@
     </Compile>
     <Compile Include="Models\CleanerLogin.cs" />
     <Compile Include="Models\Extended\Cleaner.cs" />
+    <Compile Include="Models\Extended\Feedback.cs" />
     <Compile Include="Models\Extended\Payment.cs" />
     <Compile Include="Models\Extended\Service.cs" />
     <Compile Include="Models\Extended\User.cs" />
+    <Compile Include="Models\Feedback.cs">
+      <DependentUpon>AdminModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Forgotpassword.cs" />
     <Compile Include="Models\ForgotUserid.cs" />
     <Compile Include="Models\Payment.cs">
@@ -264,6 +268,10 @@
     <Content Include="Views\User\UserIndex.cshtml" />
     <Content Include="Views\User\ServiceDisplayUser.cshtml" />
     <Content Include="Views\User\CardPayment.cshtml" />
+    <Content Include="Views\User\CreateFeedback.cshtml" />
+    <Content Include="Views\User\FeedbackView.cshtml" />
+    <Content Include="Views\Admin\FeedbackDisplay.cshtml" />
+    <Content Include="Views\User\ErrorFeedback.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Service\" />

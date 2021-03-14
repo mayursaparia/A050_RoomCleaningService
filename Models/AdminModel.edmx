@@ -29,6 +29,18 @@
           <Property Name="Location" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="CleanerAssigned" Type="bit" />
         </EntityType>
+        <EntityType Name="Feedback">
+          <Key>
+            <PropertyRef Name="FeedbackId" />
+          </Key>
+          <Property Name="FeedbackId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RatingDusting" Type="int" Nullable="false" />
+          <Property Name="RatingVacuuming" Type="int" Nullable="false" />
+          <Property Name="OverallImpression" Type="int" Nullable="false" />
+          <Property Name="AdditionalInformation" Type="varchar(max)" Nullable="false" />
+          <Property Name="OrderId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="Payment">
           <Key>
             <PropertyRef Name="Id" />
@@ -92,6 +104,7 @@
         <EntityContainer Name="ModelStoreContainer">
           <EntitySet Name="AdminTbl" EntityType="Self.AdminTbl" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cleaner" EntityType="Self.Cleaner" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Feedback" EntityType="Self.Feedback" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Payment" EntityType="Self.Payment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Service" EntityType="Self.Service" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ticket" EntityType="Self.Ticket" Schema="dbo" store:Type="Tables" />
@@ -116,6 +129,7 @@
           <EntitySet Name="Tickets" EntityType="Model.Ticket" />
           <EntitySet Name="Services" EntityType="Model.Service" />
           <EntitySet Name="Payments" EntityType="Model.Payment" />
+          <EntitySet Name="Feedbacks" EntityType="Model.Feedback" />
         </EntityContainer>
         <EntityType Name="User">
           <Key>
@@ -192,6 +206,18 @@
           <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="amount" Type="Double" />
           <Property Name="Method" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Feedback">
+          <Key>
+            <PropertyRef Name="FeedbackId" />
+          </Key>
+          <Property Name="FeedbackId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RatingDusting" Type="Int32" Nullable="false" />
+          <Property Name="RatingVacuuming" Type="Int32" Nullable="false" />
+          <Property Name="OverallImpression" Type="Int32" Nullable="false" />
+          <Property Name="AdditionalInformation" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="OrderId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -286,6 +312,19 @@
                 <ScalarProperty Name="ExpMonth" ColumnName="ExpMonth" />
                 <ScalarProperty Name="cardNumber" ColumnName="cardNumber" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Feedbacks">
+            <EntityTypeMapping TypeName="Model.Feedback">
+              <MappingFragment StoreEntitySet="Feedback">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="AdditionalInformation" ColumnName="AdditionalInformation" />
+                <ScalarProperty Name="OverallImpression" ColumnName="OverallImpression" />
+                <ScalarProperty Name="RatingVacuuming" ColumnName="RatingVacuuming" />
+                <ScalarProperty Name="RatingDusting" ColumnName="RatingDusting" />
+                <ScalarProperty Name="FeedbackId" ColumnName="FeedbackId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

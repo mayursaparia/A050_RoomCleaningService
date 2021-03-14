@@ -309,6 +309,7 @@ namespace Project_Admin_Prac.Controllers
 
 
         //Payment
+        [Authorize]
         public ActionResult Payment(int? id)
         {
 
@@ -333,14 +334,14 @@ namespace Project_Admin_Prac.Controllers
             return RedirectToAction("CardPayment");
 
         }
-
+        [Authorize]
         public ActionResult CardPayment()
         {
             ViewBag.Amount = Session["Amount"];
             return View();
             
         }
-
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult CardPayment([Bind(Include = "Id,cardNumber,ExpMonth,ExpYear,cvv,name,amount,Method")] Payment payment)
@@ -374,6 +375,81 @@ namespace Project_Admin_Prac.Controllers
                 else
                     return false;
             }
+        }
+
+        //Feedback
+        [Authorize]
+        public ActionResult Feedback(int? id)
+        {
+
+            AdminDataContext db = new AdminDataContext();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Service service = db.Services.Find(id);
+            ViewBag.Payment = service.Payment;
+            
+            Session["OrderId"] = service.OrderId;
+            if (service == null)
+            {
+                return HttpNotFound();
+            }
+            else if (service.Payment == false)
+            {
+                
+                return RedirectToAction("ErrorFeedback");
+            }
+
+
+
+                return RedirectToAction("CreateFeedback");
+            
+            
+
+        }
+        //Error Message
+        [Authorize]
+        public ActionResult ErrorFeedback()
+        {
+            string msg = "Payment is Pending and service is not Completed";
+            ViewBag.MSG = msg;
+            return View();
+        }
+
+        //Create Feedback 
+
+        public ActionResult CreateFeedback()
+        {
+            return View();
+        }
+
+        [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateFeedback(Feedback feedback)
+        {
+            string Message = "";
+            AdminDataContext db = new AdminDataContext();
+            feedback.OrderId = Convert.ToInt32(Session["OrderId"]);
+            feedback.UserId = Convert.ToString(Session["UID"]);
+            if (ModelState.IsValid)
+            {
+                db.Feedbacks.Add(feedback);
+                db.SaveChanges();
+                Message = "Feedback Submitted Successfully";
+            }
+            ViewBag.Message = Message;
+            return View(feedback);
+        }
+
+        //View Feedback 
+
+        public ActionResult FeedbackView()
+        {
+            AdminDataContext db = new AdminDataContext();
+            string uid = Convert.ToString(Session["UID"]);
+            return View(db.Feedbacks.Where(s => s.UserId == uid).ToList());
         }
     }
 }

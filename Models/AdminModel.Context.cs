@@ -31,5 +31,6 @@ namespace Project_Admin_Prac.Models
         public virtual DbSet<Ticket> Tickets { get; set; }
         public virtual DbSet<Service> Services { get; set; }
         public virtual DbSet<Payment> Payments { get; set; }
+        public virtual DbSet<Feedback> Feedbacks { get; set; }
     }
 }
