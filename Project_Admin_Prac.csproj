@@ -52,6 +52,9 @@
       <HintPath>packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Rotativa, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Rotativa.1.7.3\lib\net461\Rotativa.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -207,6 +210,10 @@
       <DependentUpon>AdminModel.edmx</DependentUpon>
       <LastGenOutput>AdminModel.cs</LastGenOutput>
     </Content>
+    <Content Include="Rotativa\help-wkhtmltoimage.txt" />
+    <Content Include="Rotativa\help-wkhtmltopdf.txt" />
+    <Content Include="Rotativa\wkhtmltoimage.exe" />
+    <Content Include="Rotativa\wkhtmltopdf.exe" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <EntityDeploy Include="Models\AdminModel.edmx">
@@ -216,6 +223,7 @@
     <Content Include="Models\AdminModel.edmx.diagram">
       <DependentUpon>AdminModel.edmx</DependentUpon>
     </Content>
+    <Content Include="App_Browsers\qt.browser" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -272,6 +280,9 @@
     <Content Include="Views\User\FeedbackView.cshtml" />
     <Content Include="Views\Admin\FeedbackDisplay.cshtml" />
     <Content Include="Views\User\ErrorFeedback.cshtml" />
+    <Content Include="Views\Admin\ServicesList.cshtml" />
+    <Content Include="Views\Admin\FeedbackList.cshtml" />
+    <Content Include="Views\Admin\GeneratePDF.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Service\" />

@@ -8,6 +8,7 @@ using System.Web.Security;
 using System.Data.Entity;
 using System.Net;
 using System.Dynamic;
+using Rotativa;
 
 namespace Project_Admin_Prac.Controllers
 {
@@ -251,6 +252,43 @@ namespace Project_Admin_Prac.Controllers
         public ActionResult FeedbackDisplay()
         {
             return View(db.Feedbacks.ToList());
+        }
+
+        //Generating PDF 
+
+        public ActionResult ServicesList()
+        {
+            using(AdminDataContext db = new AdminDataContext())
+            {
+                var slist = db.Services.ToList();
+                return View(slist);
+            }
+        }
+
+        public ActionResult FeedbackList()
+        {
+            using (AdminDataContext db = new AdminDataContext())
+            {
+                var flist = db.Feedbacks.ToList();
+                return View(flist);
+            }
+        }
+
+        public ActionResult GenerateServicesPdf()
+        {
+            var report = new ActionAsPdf("ServicesList");
+            return report;
+        }
+
+        public ActionResult GenerateFeedbackPdf()
+        {
+            var report = new ActionAsPdf("FeedbackList");
+            return report;
+        }
+
+        public ActionResult GeneratePDF()
+        {
+            return View();
         }
     }
 }

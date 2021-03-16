@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Project_Admin_Prac.Models.Feedback>
+
+@{
+    ViewBag.Title = "FeedbackList";
+}
+
+<h2>FeedbackList</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.RatingDusting)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RatingVacuuming)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OverallImpression)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AdditionalInformation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserId)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.RatingDusting)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RatingVacuuming)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OverallImpression)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AdditionalInformation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserId)
+        </td>
+    </tr>
+}
+
+</table>
+
+<p>
+    @Html.ActionLink("Generate Feedback Pdf", "GenerateFeedbackPdf")
+</p>
+<div>
+    @Html.ActionLink("Back", "GeneratePDF")
+</div>
