@@ -4,7 +4,7 @@
     ViewBag.Title = "CardPayment";
 }
 
-<h2>CardPayment</h2>
+<h2>Card Payment</h2>
 
 <h4>
     Total Amount to Pay <strong>@ViewBag.Amount</strong>
@@ -76,13 +76,16 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Pay" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 
+<div>
+    @Html.ActionLink("Back", "PaymentOption", "User")
 
+</div>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

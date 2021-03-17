@@ -331,10 +331,19 @@ namespace Project_Admin_Prac.Controllers
             {
                 return HttpNotFound();
             }
-            return RedirectToAction("CardPayment");
+            return RedirectToAction("PaymentOption");
 
         }
-        [Authorize]
+
+        public ActionResult PaymentOption()
+        {
+            
+            return View();
+
+        }
+
+        //Card Payment
+            [Authorize]
         public ActionResult CardPayment()
         {
             ViewBag.Amount = Session["Amount"];
@@ -343,7 +352,7 @@ namespace Project_Admin_Prac.Controllers
         }
         [Authorize]
         [HttpPost]
-        [ValidateAntiForgeryToken]
+       [ValidateAntiForgeryToken]
         public ActionResult CardPayment([Bind(Include = "Id,cardNumber,ExpMonth,ExpYear,cvv,name,amount,Method")] Payment payment)
         {
             if (ModelState.IsValid)
@@ -360,7 +369,17 @@ namespace Project_Admin_Prac.Controllers
             return View(payment);
         }
 
+        //Wallet Payment
 
+        [Authorize]
+        public ActionResult WalletPayment()
+        {
+            ViewBag.Amount = Session["Amount"];
+            return View();
+
+        }
+
+        
 
         [NonAction]
         public bool IsEmailExist(string email)

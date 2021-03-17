@@ -1,0 +1,21 @@
+﻿@model Project_Admin_Prac.Models.Payment
+
+@{
+    ViewBag.Title = "Payment";
+}
+
+<h2>Payment</h2>
+<h1> </h1>
+<div>
+    <div>
+        <h4>Pay Using </h4>
+    </div>
+    <div>
+        @Html.ActionLink("Credit or Debit Card","CardPayment", "User")
+    </div>
+
+    <div>
+        @Html.ActionLink("Wallet","WalletPayment", "User")
+    </div>
+</div>
+

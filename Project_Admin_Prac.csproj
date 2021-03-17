@@ -283,6 +283,8 @@
     <Content Include="Views\Admin\ServicesList.cshtml" />
     <Content Include="Views\Admin\FeedbackList.cshtml" />
     <Content Include="Views\Admin\GeneratePDF.cshtml" />
+    <Content Include="Views\User\PaymentOption.cshtml" />
+    <Content Include="Views\User\WalletPayment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Service\" />

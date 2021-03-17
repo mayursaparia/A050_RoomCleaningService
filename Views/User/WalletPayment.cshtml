@@ -1,0 +1,28 @@
+﻿@model Project_Admin_Prac.Models.Payment
+
+@{
+    ViewBag.Title = "WalletPayment";
+}
+
+<h2>Wallet Payment</h2>
+
+<h4>
+    Total Amount to Pay <strong>@ViewBag.Amount</strong>
+</h4>
+
+<div>
+    @using(Html.BeginForm("ServiceDisplayUser", "User")) 
+    { 
+        <input type="submit" value="Google Pay" class="btn btn-default" />
+    } 
+</div>
+<div>
+    @using (Html.BeginForm("ServiceDisplayUser", "User"))
+    {
+        <input type="submit" value="PhonePe" class="btn btn-default" />
+    }
+</div>
+
+<div>
+    @Html.ActionLink("Back", "PaymentOption", "User")
+</div>
