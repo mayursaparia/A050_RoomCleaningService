@@ -435,6 +435,7 @@ namespace Project_Admin_Prac.Controllers
             feedback.UserId = Convert.ToString(Session["UID"]);
             if (ModelState.IsValid)
             {
+
                 db.Feedbacks.Add(feedback);
                 db.SaveChanges();
                 Message = "Feedback Submitted Successfully";

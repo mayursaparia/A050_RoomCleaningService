@@ -6,6 +6,13 @@
 
 <h2>ServicesList</h2>
 
+@using (Html.BeginForm())
+{
+    <text>Location</text> @Html.DropDownList("location", new SelectList(ViewBag.Locationservice))
+    <input type="submit" value="Search" />
+}
+
+
 <table class="table">
     <tr>
         <th>
@@ -47,51 +54,52 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.RoomCount)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Address)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Location)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TimeSlot)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ContactNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Status_Admin)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Status_Cleaner)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Service_Status)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Cleaner_Id)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Payment)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserEmail)
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RoomCount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Location)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TimeSlot)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContactNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status_Admin)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status_Cleaner)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Service_Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cleaner_Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Payment)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserEmail)
+            </td>
+        </tr>
+    }
 
 </table>
 
 <p>
-    @Html.ActionLink("Generate Services Pdf", "GenerateServicesPdf")
+    @Html.ActionLink("Generate Services Pdf", "GenerateServicesPdf",new {loc = Model.Select(x=>x.Location).FirstOrDefault()})
 </p>
 <div>
     @Html.ActionLink("Back", "GeneratePDF")

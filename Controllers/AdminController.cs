@@ -256,33 +256,38 @@ namespace Project_Admin_Prac.Controllers
 
         //Generating PDF 
 
-        public ActionResult ServicesList()
+        public ActionResult ServicesList(string location)
         {
-            using(AdminDataContext db = new AdminDataContext())
-            {
-                var slist = db.Services.ToList();
+            AdminDataContext db = new AdminDataContext();
+            
+                ViewBag.Locationservice = (from r in db.Services
+                                           select r.Location).Distinct();
+
+                var slist = db.Services.Where(x=>x.Location == location).ToList();
                 return View(slist);
-            }
         }
 
-        public ActionResult FeedbackList()
+        public ActionResult FeedbackList(string location)
         {
-            using (AdminDataContext db = new AdminDataContext())
-            {
-                var flist = db.Feedbacks.ToList();
+            AdminDataContext db = new AdminDataContext();
+            
+                ViewBag.Locationfeedback = (from r in db.Feedbacks
+                                            select r.Location).Distinct();
+                var flist = db.Feedbacks.Where(x => x.Location == location).ToList();
                 return View(flist);
-            }
+            
         }
 
-        public ActionResult GenerateServicesPdf()
+        public ActionResult GenerateServicesPdf( string loc)
         {
-            var report = new ActionAsPdf("ServicesList");
+
+            var report = new ActionAsPdf("ServicesList",new {location = loc });
             return report;
         }
 
-        public ActionResult GenerateFeedbackPdf()
+        public ActionResult GenerateFeedbackPdf(string loc)
         {
-            var report = new ActionAsPdf("FeedbackList");
+            var report = new ActionAsPdf("FeedbackList",new { location = loc });
             return report;
         }
 

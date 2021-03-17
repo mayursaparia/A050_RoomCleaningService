@@ -5,6 +5,11 @@
 }
 
 <h2>FeedbackList</h2>
+@using (Html.BeginForm())
+{
+    <text>Location</text> @Html.DropDownList("location", new SelectList(ViewBag.Locationfeedback))
+    <input type="submit" value="Search" />
+}
 
 <table class="table">
     <tr>
@@ -29,33 +34,34 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.RatingDusting)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RatingVacuuming)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.OverallImpression)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AdditionalInformation)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.OrderId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserId)
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RatingDusting)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RatingVacuuming)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OverallImpression)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AdditionalInformation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserId)
+            </td>
+        </tr>
+    }
 
 </table>
 
 <p>
-    @Html.ActionLink("Generate Feedback Pdf", "GenerateFeedbackPdf")
+    @Html.ActionLink("Generate Feedback Pdf", "GenerateFeedbackPdf", new { loc = Model.Select(x => x.Location).FirstOrDefault() })
 </p>
 <div>
     @Html.ActionLink("Back", "GeneratePDF")

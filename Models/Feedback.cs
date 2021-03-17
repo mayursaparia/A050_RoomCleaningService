@@ -21,5 +21,6 @@ namespace Project_Admin_Prac.Models
         public string AdditionalInformation { get; set; }
         public int OrderId { get; set; }
         public string UserId { get; set; }
+        public string Location { get; set; }
     }
 }
